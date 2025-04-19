@@ -27,6 +27,14 @@ python app.py
 
 #8 having trouble getting the csv to export. This might be a problem. 
 
+Experimenting with features for the capstone group project:
 
+How to upload files with flask using python:
+https://www.youtube.com/watch?v=GeiUTkSAJPs
+
+**will need to upload flask_wtf and wtforms (pip install flask_wtf and wtforms)
+
+how to do flask authentication (flask login):
+https://www.youtube.com/watch?v=71EU8gnZqZQ
 
 

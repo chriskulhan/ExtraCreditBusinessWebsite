@@ -1,5 +1,8 @@
 # app.py with database
 from flask import Flask, render_template, request, redirect, url_for, flash
+from flask_wtf import FlaskForm
+from wtforms import SubmitField, FileField
+
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 
@@ -21,6 +24,12 @@ class Contact(db.Model):
     
     def __repr__(self):
         return f'<Contact {self.name}>'
+    
+#Define the UploadFileForm(FlaskForm):
+class UploadFileForm(FlaskForm):
+    file = FileField('File')  
+    submit = SubmitField('Upload File')
+# Initialize the database  
 
 @app.route('/')
 def home():
@@ -29,6 +38,12 @@ def home():
 @app.route('/about')
 def about():
     return render_template('about.html')
+
+# added to test:
+@app.route('/photoUpload', methods=['GET', 'POST'])
+def photo_upload():
+    form = UploadFileForm()
+    return render_template('photoUpload.html', form =form)
 
 @app.route('/contact', methods=['GET', 'POST'])
 def contact():
