@@ -17,6 +17,16 @@ pip install flask
 #also need to install the upgrade:
 pip install --upgrade pip
 
+#5 install flask Alchemy so database things are easier:
+pip install flask-sqlalchemy
+
 #5: now you can run the app.py that should show the site:
 python app.py
+
+#6 to stop running press ctrl-c
+
+#8 having trouble getting the csv to export. This might be a problem. 
+
+
+
 

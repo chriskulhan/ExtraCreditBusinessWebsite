@@ -66,6 +66,24 @@ def view_contacts():
 with app.app_context():
     db.create_all()
 
+@app.route('/admin/search')
+def search_contacts():
+    query = request.args.get('q', '')
+    if query:
+        # Search in name, email, and message
+        contacts = Contact.query.filter(
+            db.or_(
+                Contact.name.contains(query),
+                Contact.email.contains(query),
+                Contact.message.contains(query)
+            )
+        ).order_by(Contact.date_submitted.desc()).all()
+    else:
+        contacts = []
+    
+    return render_template('search_contacts.html', contacts=contacts, query=query)
+
+
 if __name__ == '__main__':
     app.run(debug=True)
 
