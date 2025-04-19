@@ -66,6 +66,7 @@ def view_contacts():
 with app.app_context():
     db.create_all()
 
+#adds a search button on the admin/contacts page to search the content of the database:
 @app.route('/admin/search')
 def search_contacts():
     query = request.args.get('q', '')
@@ -82,6 +83,41 @@ def search_contacts():
         contacts = []
     
     return render_template('search_contacts.html', contacts=contacts, query=query)
+
+# Delete a contact
+@app.route('/admin/contacts/delete/<int:contact_id>', methods=['POST'])
+def delete_contact(contact_id):
+    contact = Contact.query.get_or_404(contact_id)
+    try:
+        db.session.delete(contact)
+        db.session.commit()
+        flash('Contact deleted successfully', 'success')
+    except Exception as e:
+        db.session.rollback()
+        flash(f'Error deleting contact: {str(e)}', 'danger')
+    
+    return redirect(url_for('view_contacts'))
+
+# Edit a contact (GET shows form, POST processes form)
+@app.route('/admin/contacts/edit/<int:contact_id>', methods=['GET', 'POST'])
+def edit_contact(contact_id):
+    contact = Contact.query.get_or_404(contact_id)
+    
+    if request.method == 'POST':
+        contact.name = request.form.get('name')
+        contact.email = request.form.get('email')
+        contact.message = request.form.get('message')
+        
+        try:
+            db.session.commit()
+            flash('Contact updated successfully', 'success')
+            return redirect(url_for('view_contacts'))
+        except Exception as e:
+            db.session.rollback()
+            flash(f'Error updating contact: {str(e)}', 'danger')
+    
+    return render_template('edit_contact.html', contact=contact)
+
 
 
 if __name__ == '__main__':
