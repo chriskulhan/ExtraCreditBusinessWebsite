@@ -41,4 +41,5 @@ https://www.youtube.com/watch?v=71EU8gnZqZQ
 python upload and view photo tutorial:
 https://www.youtube.com/watch?v=dP-2NVUgh50
 
-
+css photo gallery option:
+https://www.w3schools.com/css/css_image_gallery.asp
