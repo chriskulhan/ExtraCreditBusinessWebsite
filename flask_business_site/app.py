@@ -11,6 +11,7 @@ from datetime import datetime
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'  # Needed for flashing messages
 app.config['UPLOAD_FOLDER'] = 'static/uploads' # Folder to save uploaded files
+app.config['SECRET_KEY'] = 'your_secret_key'  # Needed for CSRF protection
 
 # Configure the SQLite database
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///business_site.db'
@@ -34,6 +35,7 @@ class PhotoUpload(FlaskForm):
     submit = SubmitField('Upload Photo')
 
 @app.route('/', methods=['GET', 'POST'])
+@app.route('/home', methods=['GET', 'POST'])
 def home():
     return render_template('home.html')
 
@@ -51,9 +53,9 @@ def photo_upload():
         file.save(os.path.join(os.path.abspath(os.path.dirname(__file__)),app.config['UPLOAD_FOLDER'], secure_filename(file.filename)))#save the file
         if file:
             # Save the file or process it as needed
-            flash('Photo uploaded successfully!', 'success')
+            # flash('Photo uploaded successfully!', 'success')
             return "File has been uploaded!"
-            # return redirect(url_for('photo_upload')) #optiont to redirect to the photo
+            # return redirect(url_for('photo_upload')) #option to redirect to the photo
         else:
             flash('No file selected', 'danger')
     return render_template('photo_upload.html', form =form)

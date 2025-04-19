@@ -13,25 +13,13 @@
 </head>
 <body>
     <h1>Upload a Photo</h1>
-    <form action="{{ url_for('upload_photo') }}" method="POST" enctype="multipart/form-data">
+    <form method = 'POST' action="{{ url_for('photo_upload') }}" enctype="multipart/form-data">
         <div class="mb-3">
             <label for="photo" class="form-label">Choose a photo to upload</label>
             <input type="file" class="form-control" id="photo" name="photo" accept="image/*" required>
         </div>
         <button type="submit" class="btn btn-primary">Upload</button>
     </form>
-    <hr>
-    <h2>Uploaded Photos</h2>
-    <ul>
-        {% for photo in photos %}
-            <li>
-                <img src="{{ url_for('static', filename='uploads/' + photo) }}" alt="Uploaded Photo" style="max-width: 200px;">
-                <p>{{ photo }}</p>
-            </li>
-        {% endfor %}
-    </ul>
-    <hr>
-    <h2>Delete a Photo</h2>                     
 </body>
 </html>
 {% endblock %}

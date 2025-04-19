@@ -37,4 +37,7 @@ https://www.youtube.com/watch?v=GeiUTkSAJPs
 how to do flask authentication (flask login):
 https://www.youtube.com/watch?v=71EU8gnZqZQ
 
+python upload and view photo tutorial:
+https://www.youtube.com/watch?v=dP-2NVUgh50
+
 
