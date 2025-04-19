@@ -118,8 +118,6 @@ def edit_contact(contact_id):
     
     return render_template('edit_contact.html', contact=contact)
 
-
-
 if __name__ == '__main__':
     app.run(debug=True)
 

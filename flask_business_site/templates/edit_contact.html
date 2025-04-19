@@ -1,29 +1,29 @@
-<!-- templates/admin_contacts.html -->
+<!-- #TODO This needs work. I need to incorporate the edit function (by definining contact_id)  -->
+<!-- #into the search function -->
+
 {% extends 'base.html' %}
 
-{% block title %}Admin - Contact Submissions{% endblock %}
+{% block title %}Edit Contacts{% endblock %}
 
 {% block content %}
 <div class="row">
     <div class="col-lg-12">
-        <h1 class="mb-4">Contact Form Submissions</h1>
-            <div class="row mb-4">
-                <div class="col-lg-12">
-                    <a href="{{ url_for('search_contacts') }}" class="btn btn-primary">Search Contacts</a>
-                </div>
+        <h1 class="mb-4">Edit Contact Submissions</h1>
+        
+        <form class="mb-4" method="GET" action="{{ url_for('edit_contact') }}">
+            #TODO check this below code for correct functionality (editing!!!)
+            <div class="input-group">
+                <input type="text" class="form-control" name="q" value="{{ query }}" placeholder="Edit content...">
+                <button class="btn btn-primary" type="submit">Edit</button>
             </div>
-            <!-- #Update to templates/admin_contacts.html to include edit functionality -->
-            <div class="row mb-4">
-                <div class="col-lg-12">
-                    <a href="{{ url_for('edit_contact') }}" class="btn btn-primary">Edit Contact</a>
-                </div>
-            </div>
+        </form>
     </div>
 </div>
 
 <div class="row">
     <div class="col-lg-12">
         {% if contacts %}
+            <h2>Search Results</h2>
             <table class="table table-striped">
                 <thead>
                     <tr>
@@ -46,9 +46,13 @@
                     {% endfor %}
                 </tbody>
             </table>
+        {% elif query %}
+            <div class="alert alert-info">No results found for "{{ query }}".</div>
         {% else %}
-            <div class="alert alert-info">No contact form submissions yet.</div>
+            <div class="alert alert-info">Enter a search term to find contact submissions.</div>
         {% endif %}
+        
+        <a href="{{ url_for('view_contacts') }}" class="btn btn-secondary">View All Contacts</a>
     </div>
 </div>
 {% endblock %}
