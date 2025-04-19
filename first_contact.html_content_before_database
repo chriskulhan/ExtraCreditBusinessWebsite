@@ -6,17 +6,6 @@
 <div class="row">
     <div class="col-lg-12">
         <h1 class="mb-4">Contact Us</h1>
-        
-        <!-- Flash messages -->
-        {% with messages = get_flashed_messages(with_categories=true) %}
-            {% if messages %}
-                {% for category, message in messages %}
-                    <div class="alert alert-{{ category }}">
-                        {{ message }}
-                    </div>
-                {% endfor %}
-            {% endif %}
-        {% endwith %}
     </div>
 </div>
 
@@ -38,7 +27,7 @@
     
     <div class="col-lg-6">
         <h2>Send Us a Message</h2>
-        <form method="POST" action="{{ url_for('contact') }}">
+        <form>
             <div class="mb-3">
                 <label for="name" class="form-label">Your Name</label>
                 <input type="text" class="form-control" id="name" name="name" required>
@@ -59,3 +48,4 @@
     </div>
 </div>
 {% endblock %}
+
