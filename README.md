@@ -3,25 +3,25 @@ This is a test website so I can see if what my group has planned for our capston
 
 Crew: It's essential you install the correct dependencies and are in the correct place when running them.
 
-#1: make sure you are in the flask_business_site directory in terminal:
-cd flask_business_site
-
-#2: create a virtual environment:
+#1: create a virtual environment:
 python -m venv venv
 
-#3: activate the environment:
+#2: activate the environment:
 source venv/bin/activate
 
-#4 install flask:
+#3 install flask:
 pip install flask
 #also need to install the upgrade:
 pip install --upgrade pip
 
-#5 install flask Alchemy so database things are easier:
+#4 install flask Alchemy so database things are easier:
 pip install flask-sqlalchemy
 
-#6 install flask_wtf and wtforms to use with uploading photos
+#5 install flask_wtf and wtforms to use with uploading photos
 pip install flask_wtf wtforms
+
+#6: make sure you are in the flask_business_site directory in terminal:
+cd flask_business_site
 
 #7: now you can run the app.py that should show the site:
 python app.py
