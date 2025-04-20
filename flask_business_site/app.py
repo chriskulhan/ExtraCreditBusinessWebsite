@@ -10,7 +10,7 @@ from datetime import datetime
 
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'  # Needed for flashing messages
-app.config['UPLOAD_FOLDER'] = 'static/uploads' # Folder to save uploaded files
+app.config['UPLOAD_FOLDER'] = 'static/images' # Folder to save uploaded files
 app.config['SECRET_KEY'] = 'your_secret_key'  # Needed for CSRF protection
 
 # Configure the SQLite database
@@ -34,7 +34,7 @@ class PhotoUpload(FlaskForm):
     file = FileField('File')  
     submit = SubmitField('Upload Photo')
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/', methods=['GET', 'POST']) # TODO not sure this needs to be GET and POST (does it matter?)
 @app.route('/home', methods=['GET', 'POST'])
 def home():
     return render_template('home.html')
@@ -43,7 +43,9 @@ def home():
 def about():
     return render_template('about.html')
 
-# added to test:
+# added to test for use in group project: 
+# from https://www.youtube.com/watch?v=GeiUTkSAJPs
+
 @app.route('/photo_upload', methods=['GET', 'POST'])
 def photo_upload():
     form = PhotoUpload()
