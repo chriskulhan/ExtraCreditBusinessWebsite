@@ -3,6 +3,9 @@ This is a test website so I can see if what my group has planned for our capston
 
 Crew: It's essential you install the correct dependencies and are in the correct place when running them.
 
+#0 check to see if the app runs: python app.py
+if it doesn't, install everything in the flask_business_site folder (venv will appear)
+
 #1: create a virtual environment:
 python -m venv venv
 
@@ -20,7 +23,7 @@ pip install flask-sqlalchemy
 #5 install flask_wtf and wtforms to use with uploading photos
 pip install flask_wtf wtforms
 
-#6: make sure you are in the flask_business_site directory in terminal:
+#6: You should bein in the flask_business_site directory in terminal. if not, you'll need to reinstall venv
 cd flask_business_site
 
 #7: now you can run the app.py that should show the site:
