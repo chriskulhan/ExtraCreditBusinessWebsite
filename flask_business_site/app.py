@@ -29,10 +29,22 @@ class Contact(db.Model):
     def __repr__(self):
         return f'<Contact {self.name}>'
     
-#Define the UploadPhoto(FlaskForm):
-class PhotoUpload(FlaskForm):
-    file = FileField('File')  
-    submit = SubmitField('Upload Photo')
+#I made changes here on 4/23/2025 - From here....
+@app.route('/photo_upload', methods=['GET', 'POST'])
+def photo_upload():
+    if request.method == 'POST':
+        file = request.files['photo']
+        if file:
+            filename = secure_filename(file.filename)
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            return redirect(url_for('upload_success', filename=filename))
+    
+    return render_template('upload.html')
+
+@app.route('/success/<filename>')
+def upload_success(filename):
+    return f'File "{filename}" uploaded successfully!'
+#...To here
 
 @app.route('/', methods=['GET', 'POST']) # TODO not sure this needs to be GET and POST (does it matter?)
 @app.route('/home', methods=['GET', 'POST'])
