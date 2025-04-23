@@ -16,7 +16,7 @@
     <form method = 'POST' action="{{ url_for('photo_upload') }}" enctype="multipart/form-data">
         <div class="mb-3">
             <label for="photo" class="form-label">Choose a photo to upload</label>
-            <input type="file" class="form-control" id="photo" name="photo" accept="image/*" required>
+            <input type="file" class="form-control" id="photo" name="photo" accept="static/images/*" required>
         </div>
         <button type="submit" class="btn btn-primary">Upload</button>
     </form>
