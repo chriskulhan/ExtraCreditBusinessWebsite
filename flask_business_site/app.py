@@ -30,6 +30,13 @@ class Contact(db.Model):
         return f'<Contact {self.name}>'
     
 #I made changes here on 4/23/2025 - From here....
+# Set upload folder path
+UPLOAD_FOLDER = 'static/images'
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
+# Ensure the upload folder exists
+os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+
 @app.route('/photo_upload', methods=['GET', 'POST'])
 def photo_upload():
     if request.method == 'POST':
