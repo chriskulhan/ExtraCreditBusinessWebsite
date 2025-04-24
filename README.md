@@ -24,6 +24,8 @@ pip install flask-sqlalchemy
 #5 install flask_wtf and wtforms to use with uploading photos
 pip install flask_wtf wtforms
 
+# all: pip install flask --upgrade pip flask-sqlalchemy flask_wtf wtforms
+
 #6: You should be in the flask_business_site directory in terminal. if not, you'll need to reinstall venv
 cd flask_business_site
 
