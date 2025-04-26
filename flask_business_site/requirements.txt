@@ -2,4 +2,3 @@ python -m venv venv
 source venv/bin/activate
 pip install flask --upgrade pip flask-sqlalchemy flask_wtf wtforms
 
-#added to commit
