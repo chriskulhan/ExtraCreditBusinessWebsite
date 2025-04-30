@@ -2,6 +2,7 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_wtf import FlaskForm
 from wtforms import SubmitField, FileField
+from wtforms.validators import InputRequired
 from werkzeug.utils import secure_filename
 import os
 
@@ -12,6 +13,7 @@ app = Flask(__name__)
 app.secret_key = 'your_secret_key'  # Needed for flashing messages
 app.config['UPLOAD_FOLDER'] = 'static/images' # Folder to save uploaded files
 app.config['SECRET_KEY'] = 'your_secret_key'  # Needed for CSRF protection
+app.config['WTF_CSRF_ENABLED'] = True  # Ensure CSRF protection for Flask-WTF
 
 # Configure the SQLite database
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///business_site.db'
@@ -29,15 +31,31 @@ class Contact(db.Model):
     def __repr__(self):
         return f'<Contact {self.name}>'
     
-#Define the UploadPhoto(FlaskForm):
-class PhotoUpload(FlaskForm):
-    file = FileField('File')  
-    submit = SubmitField('Upload Photo')
+# Upload photo class
+class UploadFileForm(FlaskForm):
+    file = FileField("File", validators=[InputRequired()])
+    submit = SubmitField("Upload File")
 
-@app.route('/', methods=['GET', 'POST']) # TODO not sure this needs to be GET and POST (does it matter?)
-@app.route('/home', methods=['GET', 'POST'])
+#@app.route('/', methods=['GET', 'POST']) # TODO not sure this needs to be GET and POST (does it matter?)
+#@app.route('/home', methods=['GET', 'POST'])
+#def home():
+#    return render_template('home.html')
+
+@app.route('/')
 def home():
     return render_template('home.html')
+
+# Upload photo method
+@app.route('/photo_upload', methods=['GET','POST'])
+def uploadphoto():
+    form = UploadFileForm()
+    if form.validate_on_submit():
+        file = form.file.data  # Grabs file from form
+        filename = secure_filename(file.filename)  # Secure filename
+        file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))  # Save the file
+        flash('File has been uploaded successfully!', 'success')
+        return redirect(url_for('home'))
+    return render_template('photo_upload.html', form=form)
 
 @app.route('/about')
 def about():
@@ -46,6 +64,7 @@ def about():
 # added to test for use in group project: 
 # from https://www.youtube.com/watch?v=GeiUTkSAJPs
 
+'''
 @app.route('/photo_upload', methods=['GET', 'POST'])
 def photo_upload():
     form = PhotoUpload()
@@ -61,6 +80,8 @@ def photo_upload():
         else:
             flash('No file selected', 'danger')
     return render_template('photo_upload.html', form =form)
+
+'''    
 
 @app.route('/contact', methods=['GET', 'POST'])
 def contact():
