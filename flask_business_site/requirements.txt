@@ -1,0 +1,5 @@
+python -m venv venv
+source venv/bin/activate
+pip install flask
+pip install --upgrade pip
+pip install flask-sqlalchemy flask_wtf wtforms
