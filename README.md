@@ -1,4 +1,4 @@
-# ExtraCreditBusinessWebsite
+# FamilyArchiveWebsite
 This is a test website so I can see if what my group has planned for our capstone website will work.
 
 Crew: It's essential you install the correct dependencies and are in the correct place when running them.
@@ -12,6 +12,7 @@ python -m venv venv
 
 #2: activate the environment:
 source venv/bin/activate
+
 
 #3 install flask:
 pip install flask

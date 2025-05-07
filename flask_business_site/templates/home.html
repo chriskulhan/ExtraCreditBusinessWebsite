@@ -9,7 +9,7 @@
     <div class="col-lg-6 mx-auto">
         <p class="lead mb-4">We provide a secure and private way to store and share your photos with family members near and far.</p>
         <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-            <a href="{{ url_for('contact') }}" class="btn btn-primary btn-lg px-4 gap-3">Contact Us</a>
+            <a href="{{ url_for('contact') }}" class="btn btn-outline-secondary btn-lg px-4">Contact Us</a>
             <a href="{{ url_for('about') }}" class="btn btn-outline-secondary btn-lg px-4">Learn More</a>
             <a href="{{ url_for('uploadphoto') }}" class="btn btn-outline-secondary btn-lg px-4">Upload Photo</a>
         </div>
@@ -17,7 +17,7 @@
 </div>
 
 <!-- Features Section -->
-<div class="row g-4 py-5">
+<!-- <div class="row g-4 py-5">
     <div class="col-md-4">
         <div class="card h-100">
             <div class="card-body">
@@ -42,5 +42,48 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
+
+<!-- gallery section  works, but NOT RIGHT, need carousel-->
+<!-- photo gallery
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <img src="{{ url_for('static', filename='images/test_photo.jpeg') }}" class="img-fluid" alt="Test photo">
+        </div>
+        <div class="col-md-4">
+            <img src="{{ url_for('static', filename='images/restaurant.jpg') }}" class="img-fluid" alt="Restaurant photo">
+        </div>
+        <div class="col-md-4">
+            <img src="{{ url_for('static', filename='images/Picture.jpg') }}" class="img-fluid" alt="Picture">
+        </div>
+    </div> -->
+
+<!-- photo carousel -->
+<!-- info on constructor method to make the carousel NOT automatic: https://github.com/twbs/bootstrap/blob/f0252f5b2c8a8e22cad5872407059e7615534de3/site/content/docs/5.3/components/carousel.md -->
+
+<div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="{{ url_for('static', filename='images/test_photo.jpeg') }}" class="d-block w-100" alt="Test photo">
+        </div>
+        <div class="carousel-item">
+            <img src="{{ url_for('static', filename='images/restaurant.jpg') }}" class="d-block w-100" alt="Restaurant photo">
+        </div>
+        <div class="carousel-item">
+            <img src="{{ url_for('static', filename='images/Picture.jpg') }}" class="d-block w-100" alt="Picture">
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+
+
+
+
 {% endblock %}
