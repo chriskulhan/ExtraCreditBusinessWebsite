@@ -1,3 +1,6 @@
+# Met with Dr. Mary on 5/8/25 for Unit Test ideas
+# Created Unit Test for Contact Module. Tests if record is added to database.
+
 import unittest
 from app import app, db, Contact
 from datetime import datetime, timezone
